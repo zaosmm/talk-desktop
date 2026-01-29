@@ -165,21 +165,6 @@ async function login() {
 		<div class="login-box">
 			<form @submit.prevent="login">
 				<fieldset :disabled="state === 'loading'">
-					<h2 class="login-box__header">
-						{{ t('talk_desktop', 'Log in to {applicationName}', { applicationName: BUILD_CONFIG.applicationName }) }}
-					</h2>
-					<NcTextField
-						v-model="rawServerUrl"
-						:label="!enforceDomain ? t('talk_desktop', 'Server address') : undefined"
-						:aria-label="enforceDomain ? t('talk_desktop', 'Server address') : undefined"
-						:label-visible="!enforceDomain"
-						:input-class="{ 'login-box__server--predefined': enforceDomain }"
-						:placeholder="!enforceDomain ? 'https://try.nextcloud.com' : undefined"
-						inputmode="url"
-						:readonly="enforceDomain"
-						:success="state === 'success'"
-						:error="state === 'error'"
-						:helper-text="stateText" />
 					<NcButton
 						v-if="state !== 'loading'"
 						class="submit-button"
@@ -207,7 +192,7 @@ async function login() {
 		</div>
 		<div class="spacer">
 			<footer v-if="channel !== 'stable'" class="footer">
-				{{ BUILD_CONFIG.applicationName }} {{ version }}
+				{{ BUILD_CONFIG.applicationName }}
 			</footer>
 		</div>
 	</AppWindow>
