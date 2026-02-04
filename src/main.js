@@ -16,7 +16,8 @@ const { openChromeWebRtcInternals } = require('./app/dev.utils.ts')
 const { triggerDownloadUrl } = require('./app/downloads.ts')
 const { setupReleaseNotificationScheduler } = require('./app/githubReleaseNotification.service.js')
 const { initLaunchAtStartupListener } = require('./app/launchAtStartup.config.ts')
-const { systemInfo, isLinux, isMac, isWindows, isSameExecution } = require('./app/system.utils.ts')
+const { runMigrations } = require('./app/migration.service.ts')
+const { systemInfo, isLinux, isMac, isWindows, isSameExecution, relaunchApp } = require('./app/system.utils.ts')
 const { applyTheme } = require('./app/theme.config.ts')
 const { buildTitle } = require('./app/utils.ts')
 const { enableWebRequestInterceptor, disableWebRequestInterceptor } = require('./app/webRequestInterceptor.js')
@@ -80,7 +81,6 @@ if (!app.requestSingleInstanceLock()) {
 	app.quit()
 }
 
-
 ipcMain.on('app:quit', () => app.quit())
 ipcMain.handle('app:getSystemInfo', () => systemInfo)
 ipcMain.handle('app:buildTitle', (event, title) => buildTitle(title))
@@ -92,10 +92,7 @@ ipcMain.handle('app:getSystemL10n', () => ({
 ipcMain.handle('app:enableWebRequestInterceptor', (event, ...args) => enableWebRequestInterceptor(...args))
 ipcMain.handle('app:disableWebRequestInterceptor', (event, ...args) => disableWebRequestInterceptor(...args))
 ipcMain.handle('app:setBadgeCount', async (event, count) => app.setBadgeCount(count))
-ipcMain.on('app:relaunch', () => {
-	app.relaunch()
-	app.exit(0)
-})
+ipcMain.on('app:relaunch', () => relaunchApp())
 ipcMain.handle('app:config:get', (event, key) => getAppConfig(key))
 ipcMain.handle('app:config:set', (event, key, value) => setAppConfig(key, value))
 ipcMain.on('app:grantUserGesturedPermission', (event, id) => {
@@ -141,6 +138,8 @@ let isInWindowRelaunch = false
 
 app.whenReady().then(async () => {
 	await loadAppConfig()
+	await runMigrations()
+
 	applyTheme()
 	initLaunchAtStartupListener()
 	registerAppProtocolHandler()

@@ -3,7 +3,7 @@
   "name": "talk-desktop",
   "productName": "Nextcloud Talk",
   "desktopName": "com.nextcloud.talk.desktop",
-  "version": "2.0.5",
+  "version": "2.1.0-beta",
   "bugs": {
     "url": "https://github.com/nextcloud/talk-desktop/issues",
     "create": "https://github.com/nextcloud/talk-desktop/issues/new/choose"
@@ -42,8 +42,8 @@
     "ts:check": "vue-tsc --noEmit"
   },
   "talk": {
-    "stable": "v22.0.7",
-    "beta": "v22.0.7",
+    "stable": "v22.0.8",
+    "beta": "v23.0.0-rc.2",
     "dev": "main"
   },
   "dependencies": {
