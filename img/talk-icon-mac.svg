@@ -53,10 +53,10 @@
    id="a"><stop
      id="stop10"
      offset="0"
-     stop-color="#0082c9" /><stop
+     stop-color="#e30004" /><stop
      id="stop12"
      offset="1"
-     stop-color="#1cafff" /></linearGradient>
+     stop-color="#fa8989" /></linearGradient>
 <filter
    style="color-interpolation-filters:sRGB;"
    inkscape:label="Drop Shadow"

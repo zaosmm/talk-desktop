@@ -1,6 +1,6 @@
 {
-	"applicationName": "ЗАО СММ Сообщения",
-	"domain": "https://x70-cloud-002-nobel.fo7.ru",
+	"applicationName": "zaosmm-messages",
+	"domain": "https://cloud.zaosmm.ru",
 	"enforceDomain": true,
 	"brandColor": "#004A8D",
 	"brandFontColor": "#FFFFFF",

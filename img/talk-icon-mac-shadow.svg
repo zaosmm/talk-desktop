@@ -29,8 +29,8 @@
             <use xlink:href="#squircle-path" fill="white" />
         </mask>
         <linearGradient id="squircle-gradient" gradientTransform="rotate(90)">
-            <stop offset="0%" stop-color="#1CB3FF" />
-            <stop offset="100%" stop-color="#0088CC" />
+            <stop offset="0%" stop-color="#fa8989" />
+            <stop offset="100%" stop-color="#e30004" />
         </linearGradient>
         <filter id="squircle-shadow-filter">
             <feOffset result="offOut" in="SourceGraphic" dx="0" dy="10" />
